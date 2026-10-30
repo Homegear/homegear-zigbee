@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
+	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<device id="1037lumi.remote.b286acn011">
+			<description>Xiaomi Aquara Remote Smart Light Wall Switch Double Key endpoint 1</description>
+			<typeNumber>11</typeNumber>
+		</device>
+	</supportedDevices>
+	<properties>
+		<hasBattery>true</hasBattery>
+	</properties>
+	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
+			<properties>
+				<internal>true</internal>
+			</properties>
+			<configParameters>ZigbeeConfig</configParameters>
+			<variables>maint_ch_values</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="Measurements">
+			<variables>ZigbeeVariables</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="2" type="Configuration">
+			<variables>ZigbeeConfigVariables</variables>
+		</function>
+	</functions>
+	<packets>
+		<packet id="MULTISTATE_INPUT_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x00120A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x12</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x55</constValueInteger>
+				</element>
+				<!-- Data type = uint16 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x21</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>VALUE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="MULTISTATE_INPUT_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x001201</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x12</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x55</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = uint16 -->
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x21</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>VALUE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="MULTISTATE_INPUT_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x001200</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x12</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x55</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="MULTISTATE_INPUT_ATTR_SET">
+			<direction>fromCentral</direction>
+			<type>0x001200</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x12</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = write attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x55</constValueInteger>
+				</element>
+				<!-- Data type = uint16 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x21</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>VALUE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+	</packets>
+	<parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<configParameters id="ZigbeeConfig">
+		</configParameters>
+		<variables id="maint_ch_values">
+			<parameter id="UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<service>true</service>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="STICKY_UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<service>true</service>
+					<sticky>true</sticky>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="RSSI_DEVICE">
+				<properties>
+					<writeable>false</writeable>
+				</properties>
+				<logicalInteger/>
+				<physicalInteger groupId="RSSI_DEVICE">
+					<operationType>internal</operationType>
+				</physicalInteger>
+			</parameter>			
+		</variables>
+		<variables id="ZigbeeVariables">
+
+			<parameter id="VALUE">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>LongPress</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>SingleClick</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>DoubleClick</id>
+						<index>2</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="VALUE">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MULTISTATE_INPUT_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="MULTISTATE_INPUT_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="MULTISTATE_INPUT_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="MULTISTATE_INPUT_ATTR_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+
+		</variables>
+		<variables id="ZigbeeConfigVariables">
+		</variables>
+	</parameterGroups>
+</homegearDevice>

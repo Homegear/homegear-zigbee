@@ -1,0 +1,25 @@
+---
+# {{{ Pairing info
+l10n.zigbee.pairingInfo.aeskey: 'AES key'
+l10n.zigbee.pairingInfo.id: 'ID'
+l10n.zigbee.pairingInfo.hostname: 'Hostname'
+l10n.zigbee.pairingInfo.password: 'Password'
+l10n.zigbee.pairingInfo.default: 'Default'
+l10n.zigbee.pairingInfo.device: 'Device'
+# }}}
+
+# {{{ Pairing
+l10n.zigbee.pairing.peerAddSuccess: 'Peer added.'
+l10n.zigbee.pairing.unknownError: 'Unknown error during pairing.'
+l10n.zigbee.pairing.pairOnStart: 'Pairing started.'
+l10n.zigbee.pairing.removeStart: 'Remove started.'
+l10n.zigbee.pairing.addFound: 'Node to add found.'
+l10n.zigbee.pairing.addDone: 'Add done.'
+l10n.zigbee.pairing.addFailed: 'Add failed.'
+l10n.zigbee.pairing.addUnknown: 'Unknown status code for node addition.'
+l10n.zigbee.pairing.removeDone: 'Remove done.'
+l10n.zigbee.pairing.securityKeySet: 'Security key set success.'
+l10n.zigbee.pairing.securityKeyNotSet: 'Security key set failed.'
+# }}}
+
+

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
+	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<device id="1037lumi.sensor_switch1">
+			<description>Xiaomi Mi Smart Home Wireless Switch</description>
+			<typeNumber>26</typeNumber>
+		</device>
+	</supportedDevices>
+	<properties>
+		<hasBattery>true</hasBattery>
+	</properties>
+	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
+			<properties>
+				<internal>true</internal>
+			</properties>
+			<configParameters>ZigbeeConfig</configParameters>
+			<variables>maint_ch_values</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="Measurements">
+			<variables>ZigbeeVariables</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="2" type="Configuration">
+			<variables>ZigbeeConfigVariables</variables>
+		</function>
+	</functions>
+	<packets>
+
+		<packet id="ONOFF_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x00060A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x06</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = bool -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>ONOFF</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ONOFF_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x000601</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x06</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = bool -->
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>ONOFF</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ONOFF_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x000600</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x06</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ONOFF_ATTR_SET_OFF">
+			<direction>fromCentral</direction>
+			<type>0x000600</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x06</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x11</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ONOFF_ATTR_SET_ON">
+			<direction>fromCentral</direction>
+			<type>0x000601</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x06</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x11</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="MANUFACTURER_REPORT">
+			<direction>toCentral</direction>
+			<type>0x00000A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code and transaction sequence -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0xFF02</constValueInteger>
+				</element>
+				<!-- attr type: this is a structure -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x4C</constValueInteger>
+				</element>
+				<!-- Data length = uint16 - actually count of values, usually 6 but don't match, just in case it's possible to have more or less -->
+				<!-- type bool -->
+				<element>
+					<bitIndex>96</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>104</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>STATUS_REPORT</parameterId>
+				</element>
+				<!-- type uint16 -->
+				<element>
+					<bitIndex>112</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x21</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>120</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>BATTERY_VOLTAGE</parameterId>
+				</element>
+				<!-- more follow, but I don't know the meanings yet -->
+				<!-- uint16, uint40, uint16, uint8 -->
+			</binaryPayload>
+		</packet>
+
+
+  </packets>
+  <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<configParameters id="ZigbeeConfig">
+		</configParameters>
+		<variables id="maint_ch_values">
+			<parameter id="UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<service>true</service>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="STICKY_UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<service>true</service>
+					<sticky>true</sticky>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="RSSI_DEVICE">
+				<properties>
+					<writeable>false</writeable>
+				</properties>
+				<logicalInteger/>
+				<physicalInteger groupId="RSSI_DEVICE">
+					<operationType>internal</operationType>
+				</physicalInteger>
+			</parameter>			
+		</variables>
+		<variables id="ZigbeeVariables">
+
+			<parameter id="ONOFF">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>true</defaultValue>
+				</logicalBoolean>
+				<physicalInteger groupId="ONOFF">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="ONOFF_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="ONOFF_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="ONOFF_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="ONOFF_ATTR_SET_OFF">
+						<type>set</type>
+						<conditionOperator>e</conditionOperator>
+						<conditionValue>0</conditionValue>
+					</packet>
+					<packet id="ONOFF_ATTR_SET_ON">
+						<type>set</type>
+						<conditionOperator>e</conditionOperator>
+						<conditionValue>1</conditionValue>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="STATUS_REPORT">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>true</defaultValue>
+				</logicalBoolean>
+				<physicalInteger groupId="STATUS_REPORT">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MANUFACTURER_REPORT">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="BATTERY_VOLTAGE">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+					<unit>V</unit>
+					<casts>
+						<round>
+							<decimalPlaces>3</decimalPlaces>
+						</round>
+						<decimalIntegerScale>
+							<factor>1000</factor>
+							<offset>0</offset>
+						</decimalIntegerScale>
+					</casts>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0.000</minimumValue>
+					<maximumValue>4.000</maximumValue>
+				</logicalInteger>
+				<physicalInteger groupId="BATTERY_VOLTAGE">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MANUFACTURER_REPORT">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+
+		</variables>
+		<variables id="ZigbeeConfigVariables">
+		</variables>
+	</parameterGroups>
+</homegearDevice>

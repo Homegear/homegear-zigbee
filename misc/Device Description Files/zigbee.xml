@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="0">
+  <supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+    <device id="Generic Service">
+	<description>Generic Service</description>
+	<typeNumber>0x0</typeNumber>
+    </device>
+  </supportedDevices>
+  <properties xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+    <visible>true</visible>
+    <deletable>true</deletable>
+  </properties>
+  <functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+    <function channel="0" type="Zigbee" channelCount="1">
+	     <configParameters>ZigbeeConfig</configParameters>
+       <variables>maint_ch_values</variables>
+	     <variables>ZigbeeVariables</variables>
+    </function>
+  </functions>
+  <packets />
+  <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+    <configParameters id="ZigbeeConfig">
+    </configParameters>
+    <variables id="maint_ch_values">
+			<parameter id="UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<service>true</service>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="STICKY_UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<service>true</service>
+					<sticky>true</sticky>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="RSSI_DEVICE">
+				<properties>
+					<writeable>false</writeable>
+				</properties>
+				<logicalInteger/>
+				<physicalInteger groupId="RSSI_DEVICE">
+					<operationType>internal</operationType>
+				</physicalInteger>
+			</parameter>
+		</variables>
+    <variables id="ZigbeeVariables">
+    </variables>
+  </parameterGroups>
+</homegearDevice>

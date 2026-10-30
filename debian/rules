@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+override_dh_auto_install:
+	dh_auto_install
+
+	mkdir -p $(CURDIR)/debian/homegear-zigbee/etc/homegear/families
+	cp -R $(CURDIR)/misc/Config\ Directory/* $(CURDIR)/debian/homegear-zigbee/etc/homegear/families
+	chmod 755 $(CURDIR)/debian/homegear-zigbee/etc/homegear/families
+	chmod 644 $(CURDIR)/debian/homegear-zigbee/etc/homegear/families/*
+
+	mkdir -p $(CURDIR)/debian/homegear-zigbee/etc/homegear/devices/26
+	cp -R $(CURDIR)/misc/Device\ Description\ Files/* $(CURDIR)/debian/homegear-zigbee/etc/homegear/devices/26
+	chmod 755 $(CURDIR)/debian/homegear-zigbee/etc/homegear/devices/26
+	chmod 644 $(CURDIR)/debian/homegear-zigbee/etc/homegear/devices/26/*
+
+	mkdir -p $(CURDIR)/debian/homegear-zigbee/var/lib/homegear/admin-ui/translations/modules/zigbee
+	cp -R $(CURDIR)/misc/UI\ Translations/* $(CURDIR)/debian/homegear-zigbee/var/lib/homegear/admin-ui/translations/modules/zigbee
+	chown -R root:root $(CURDIR)/debian/homegear-zigbee/var/lib/homegear/admin-ui/translations/modules/zigbee
+	chmod -R 555 $(CURDIR)/debian/homegear-zigbee/var/lib/homegear/admin-ui/translations/modules/zigbee
+
+override_dh_strip:
+	dh_strip
+
+%:
+	dh $@ --parallel

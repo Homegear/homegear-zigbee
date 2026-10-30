@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
+    <supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+	<device id="117cTRADFRI remote control1">
+		<description>IKEA TRADFRI remote control</description>
+		<typeNumber>22</typeNumber>
+	</device>
+    </supportedDevices>
+    <properties>
+	<hasBattery>true</hasBattery>
+    </properties>
+    <functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+	<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
+		<properties>
+			<internal>true</internal>
+		</properties>
+		<configParameters>ZigbeeConfig</configParameters>
+		<variables>maint_ch_values</variables>
+	</function>
+	<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="Measurements">
+		<variables>ZigbeeVariables</variables>
+	</function>
+	<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="2" type="Configuration">
+		<variables>ZigbeeConfigVariables</variables>
+	</function>
+    </functions>
+    <packets>
+
+      <packet id="ONOFF_TOGGLE_COMMAND">
+        <direction>toCentral</direction>
+        <type>0x000602</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x06</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, good for some value -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>TOGGLE</parameterId>
+          </element>
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x2</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+
+      <packet id="ONOFF_LONG_PRESS">
+        <direction>toCentral</direction>
+        <type>0x000804</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, good for some value -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>TOGGLE_LONG_PRESS</parameterId>
+          </element>
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x4</constValueInteger>
+          </element>
+          <!-- level = max -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0xFE</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+
+      <packet id="LEVEL_CONTROL_STEP_DOWN">
+        <direction>toCentral</direction>
+        <type>0x000802</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, good for some value -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_STEP_DOWN</parameterId>
+          </element>
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x2</constValueInteger>
+          </element>
+          <!-- direction, down -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+      <packet id="LEVEL_CONTROL_STEP_UP">
+        <direction>toCentral</direction>
+        <type>0x000806</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, good for some value -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_STEP_UP</parameterId>
+          </element>
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x6</constValueInteger>
+          </element>
+          <!-- direction, up -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x0</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+
+      <packet id="LEVEL_CONTROL_MOVE_UP">
+        <direction>toCentral</direction>
+        <type>0x000805</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to true -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_MOVE_UP</parameterId>
+          </element>
+          <!-- Transaction ID, skip it-->
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x5</constValueInteger>
+          </element>
+          <!-- direction, up -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x0</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+      <packet id="LEVEL_CONTROL_MOVE_UP_STOP">
+        <direction>toCentral</direction>
+        <type>0x000807</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to false -->
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_MOVE_UP</parameterId>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, skip it-->
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+
+      <packet id="LEVEL_CONTROL_MOVE_DOWN">
+        <direction>toCentral</direction>
+        <type>0x000801</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, skip it-->
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- direction, down -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to true -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_MOVE_DOWN</parameterId>
+          </element>
+        </binaryPayload>
+      </packet>
+
+      <packet id="LEVEL_CONTROL_MOVE_DOWN_STOP">
+        <direction>toCentral</direction>
+        <type>0x000803</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x08</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to false -->
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_MOVE_DOWN</parameterId>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Transaction ID, skip it-->
+          <!-- Command -->
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x3</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x0</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to false -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>LEVEL_MOVE_DOWN</parameterId>
+          </element>
+        </binaryPayload>
+      </packet>
+
+
+      <packet id="STEP_LEFT_PACKET">
+        <direction>toCentral</direction>
+        <type>0x000507</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x05</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x5</constValueInteger>
+          </element>
+          <!-- Manufacturer code - manufacturer specific packet -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7C</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x11</constValueInteger>
+          </element>
+          <!-- Transaction ID, good for some value -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>STEP_LEFT</parameterId>
+          </element>
+          <!-- Command -->
+          <element>
+            <bitIndex>48</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7</constValueInteger>
+          </element>
+          <!-- direction, left -->
+          <element>
+            <bitIndex>56</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+
+      <packet id="MOVE_LEFT_PACKET">
+        <direction>toCentral</direction>
+        <type>0x000508</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x05</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x5</constValueInteger>
+          </element>
+          <!-- Manufacturer code - manufacturer specific packet -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7C</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x11</constValueInteger>
+          </element>
+          <!-- Transaction ID, skip it -->
+          <!-- Command -->
+          <element>
+            <bitIndex>48</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x8</constValueInteger>
+          </element>
+          <!-- direction, left -->
+          <element>
+            <bitIndex>56</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x1</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to true -->
+          <element>
+            <bitIndex>56</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>MOVE_LEFT</parameterId>
+          </element>
+        </binaryPayload>
+      </packet>
+
+      <packet id="MOVE_LEFT_RIGHT_STOP_PACKET">
+        <direction>toCentral</direction>
+        <type>0x000509</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x05</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Also use it to set the values to false -->
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>MOVE_LEFT</parameterId>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>MOVE_RIGHT</parameterId>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x5</constValueInteger>
+          </element>
+          <!-- Manufacturer code - manufacturer specific packet -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7C</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x11</constValueInteger>
+          </element>
+          <!-- Transaction ID, skip it -->
+          <!-- Command -->
+          <element>
+            <bitIndex>48</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x9</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+      <packet id="STEP_RIGHT_PACKET">
+        <direction>toCentral</direction>
+        <type>0x000507</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x05</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x5</constValueInteger>
+          </element>
+          <!-- Manufacturer code - manufacturer specific packet -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7C</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x11</constValueInteger>
+          </element>
+          <!-- Transaction ID, good for some value -->
+          <element>
+            <bitIndex>40</bitIndex>
+            <bitSize>8</bitSize>
+            <parameterId>STEP_RIGHT</parameterId>
+          </element>
+          <!-- Command -->
+          <element>
+            <bitIndex>48</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7</constValueInteger>
+          </element>
+          <!-- direction, right -->
+          <element>
+            <bitIndex>56</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x0</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+      <packet id="MOVE_RIGHT_PACKET">
+        <direction>toCentral</direction>
+        <type>0x000508</type>
+        <channel>1</channel>
+        <binaryPayload>
+          <!-- Cluster id -->
+          <element>
+            <bitIndex>0</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x05</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>8</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x00</constValueInteger>
+          </element>
+          <!-- Frame control -->
+          <element>
+            <bitIndex>16</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x5</constValueInteger>
+          </element>
+          <!-- Also use it to set the value to true -->
+          <element>
+            <bitIndex>23</bitIndex>
+            <bitSize>1</bitSize>
+            <parameterId>MOVE_RIGHT</parameterId>
+          </element>
+          <!-- Manufacturer code - manufacturer specific packet -->
+          <element>
+            <bitIndex>24</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x7C</constValueInteger>
+          </element>
+          <element>
+            <bitIndex>32</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x11</constValueInteger>
+          </element>
+          <!-- Transaction ID, skip it -->
+          <!-- Command -->
+          <element>
+            <bitIndex>48</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x8</constValueInteger>
+          </element>
+          <!-- direction, right -->
+          <element>
+            <bitIndex>56</bitIndex>
+            <bitSize>8</bitSize>
+            <constValueInteger>0x0</constValueInteger>
+          </element>
+        </binaryPayload>
+      </packet>
+
+    </packets>
+    <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+	<configParameters id="ZigbeeConfig">
+	</configParameters>
+	<variables id="maint_ch_values">
+		<parameter id="UNREACH">
+			<properties>
+				<readable>true</readable>
+				<writeable>false</writeable>
+				<service>true</service>
+			</properties>
+			<logicalBoolean />
+			<physicalBoolean>
+				<operationType>internal</operationType>
+			</physicalBoolean>
+		</parameter>
+		<parameter id="STICKY_UNREACH">
+			<properties>
+				<readable>true</readable>
+				<writeable>true</writeable>
+				<service>true</service>
+				<sticky>true</sticky>
+			</properties>
+			<logicalBoolean />
+			<physicalBoolean>
+				<operationType>internal</operationType>
+			</physicalBoolean>
+		</parameter>
+    <parameter id="RSSI_DEVICE">
+      <properties>
+        <writeable>false</writeable>
+      </properties>
+      <logicalInteger/>
+      <physicalInteger groupId="RSSI_DEVICE">
+        <operationType>internal</operationType>
+      </physicalInteger>
+    </parameter>    
+	</variables>
+	<variables id="ZigbeeVariables">
+
+    <parameter id="TOGGLE">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalInteger>
+        <minimumValue>0</minimumValue>
+        <maximumValue>0xFF</maximumValue>
+      </logicalInteger>
+      <physicalInteger groupId="TOGGLE">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="ONOFF_TOGGLE_COMMAND">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+
+    <parameter id="TOGGLE_LONG_PRESS">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalInteger>
+        <minimumValue>0</minimumValue>
+        <maximumValue>0xFF</maximumValue>
+      </logicalInteger>
+      <physicalInteger groupId="TOGGLE_LONG_PRESS">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="ONOFF_LONG_PRESS">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+
+    <parameter id="LEVEL_STEP_UP">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalInteger>
+        <minimumValue>0</minimumValue>
+        <maximumValue>0xFF</maximumValue>
+      </logicalInteger>
+      <physicalInteger groupId="LEVEL_STEP_UP">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="LEVEL_CONTROL_STEP_UP">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="LEVEL_STEP_DOWN">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalInteger>
+        <minimumValue>0</minimumValue>
+        <maximumValue>0xFF</maximumValue>
+      </logicalInteger>
+      <physicalInteger groupId="LEVEL_STEP_DOWN">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="LEVEL_CONTROL_STEP_DOWN">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="LEVEL_MOVE_UP">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalBoolean>
+      </logicalBoolean>
+      <physicalInteger groupId="LEVEL_MOVE_UP">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="LEVEL_CONTROL_MOVE_UP">
+          <type>event</type>
+        </packet>
+        <packet id="LEVEL_CONTROL_MOVE_UP_STOP">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="LEVEL_MOVE_DOWN">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalBoolean>
+      </logicalBoolean>
+      <physicalInteger groupId="LEVEL_MOVE_DOWN">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="LEVEL_CONTROL_MOVE_DOWN">
+          <type>event</type>
+        </packet>
+        <packet id="LEVEL_CONTROL_MOVE_DOWN_STOP">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="STEP_LEFT">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalInteger>
+        <minimumValue>0</minimumValue>
+        <maximumValue>0xFF</maximumValue>
+      </logicalInteger>
+      <physicalInteger groupId="STEP_LEFT">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="STEP_LEFT_PACKET">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="MOVE_LEFT">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalBoolean>
+      </logicalBoolean>
+      <physicalInteger groupId="MOVE_LEFT">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="MOVE_LEFT_PACKET">
+          <type>event</type>
+        </packet>
+        <packet id="MOVE_LEFT_RIGHT_STOP_PACKET">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="STEP_RIGHT">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalInteger>
+        <minimumValue>0</minimumValue>
+        <maximumValue>0xFF</maximumValue>
+      </logicalInteger>
+      <physicalInteger groupId="STEP_RIGHT">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="STEP_RIGHT_PACKET">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+    <parameter id="MOVE_RIGHT">
+      <properties>
+        <readable>true</readable>
+        <writeable>false</writeable>
+        <!-- Physical type is not signed -->
+        <signed>false</signed>
+      </properties>
+      <logicalBoolean>
+      </logicalBoolean>
+      <physicalInteger groupId="MOVE_RIGHT">
+        <operationType>command</operationType>
+      </physicalInteger>
+      <packets>
+        <packet id="MOVE_RIGHT_PACKET">
+          <type>event</type>
+        </packet>
+        <packet id="MOVE_LEFT_RIGHT_STOP_PACKET">
+          <type>event</type>
+        </packet>
+      </packets>
+    </parameter>
+
+	</variables>
+	<variables id="ZigbeeConfigVariables">
+	</variables>
+    </parameterGroups>
+</homegearDevice>

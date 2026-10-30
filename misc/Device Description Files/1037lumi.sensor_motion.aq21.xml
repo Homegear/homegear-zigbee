@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
+	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<device id="1037lumi.sensor_motion.aq21">
+			<description>Xiaomi Aqara Occupancy/Motion and Luminance Sensor</description>
+			<typeNumber>9</typeNumber>
+		</device>
+	</supportedDevices>
+	<properties>
+		<hasBattery>true</hasBattery>
+	</properties>
+	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
+			<properties>
+				<internal>true</internal>
+			</properties>
+			<configParameters>ZigbeeConfig</configParameters>
+			<variables>maint_ch_values</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="Measurements">
+			<variables>ZigbeeVariables</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="2" type="Configuration">
+			<variables>ZigbeeConfigVariables</variables>
+		</function>
+	</functions>
+	<packets>
+
+		<packet id="ILLUMINANCE_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x04000A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x400</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = uint16 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x21</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>ILLUMINANCE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ILLUMINANCE_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x04000A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x400</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = uint16 -->
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x21</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>ILLUMINANCE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ILLUMINANCE_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x04000A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x400</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+		<packet id="OCCUPANCY_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x04060A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x406</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = map8 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>OCCUPANCY</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="OCCUPANCY_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x04060A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x406</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = map8 -->
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>OCCUPANCY</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="OCCUPANCY_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x04060A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x406</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+		<packet id="MANUFACTURER_REPORT">
+			<direction>toCentral</direction>
+			<type>0x00000A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code and transaction sequence -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0xFF01</constValueInteger>
+				</element>
+				<!-- attr type and so on -->
+
+			</binaryPayload>
+		</packet>
+
+
+  </packets>
+  <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<configParameters id="ZigbeeConfig">
+		</configParameters>
+		<variables id="maint_ch_values">
+			<parameter id="UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<service>true</service>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="STICKY_UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<service>true</service>
+					<sticky>true</sticky>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="RSSI_DEVICE">
+				<properties>
+					<writeable>false</writeable>
+				</properties>
+				<logicalInteger/>
+				<physicalInteger groupId="RSSI_DEVICE">
+					<operationType>internal</operationType>
+				</physicalInteger>
+			</parameter>			
+		</variables>
+		<variables id="ZigbeeVariables">
+
+			<parameter id="ILLUMINANCE">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>0xFFFF</maximumValue>
+				</logicalInteger>
+				<physicalInteger groupId="ILLUMINANCE">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="ILLUMINANCE_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="ILLUMINANCE_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="ILLUMINANCE_ATTR_GET">
+						<type>get</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="OCCUPANCY">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>false</defaultValue>
+				</logicalBoolean>
+				<physicalInteger groupId="OCCUPANCY">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="OCCUPANCY_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="OCCUPANCY_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="OCCUPANCY_ATTR_GET">
+						<type>get</type>
+					</packet>
+				</packets>
+			</parameter>
+
+		</variables>
+		<variables id="ZigbeeConfigVariables">
+		</variables>
+	</parameterGroups>
+</homegearDevice>

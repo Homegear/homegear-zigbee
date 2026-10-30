@@ -1,0 +1,9 @@
+---
+# {{{ Pairing info
+l10n.zigbee.pairingInfo.aeskey: 'AES-Schlüssel'
+l10n.zigbee.pairingInfo.id: 'ID'
+l10n.zigbee.pairingInfo.hostname: 'Hostname'
+l10n.zigbee.pairingInfo.password: 'Kennwort'
+l10n.zigbee.pairingInfo.default: 'Standard'
+l10n.zigbee.pairingInfo.device: 'Gerät'
+# }}}

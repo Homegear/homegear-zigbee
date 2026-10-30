@@ -1,0 +1,14 @@
+Source: homegear-zigbee
+Maintainer: Sathya Laufer <sathya@laufers.net>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 8), libhomegear-base (= <BASELIBVER>), libgcrypt20-dev, libgpg-error-dev (>= 1.10), libgnutls28-dev, libavahi-common-dev, libavahi-client-dev
+Homepage: https://homegear.eu
+
+Package: homegear-zigbee
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, homegear (= <BASELIBVER>), libavahi-common-dev, libavahi-client-dev
+Description: Zigbee module for Homegear
+ Homegear is a program to interface your home automation software 
+ with your smart home devices.

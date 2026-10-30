@@ -1,0 +1,1958 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
+	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<device id="1037SPZB00011">
+			<description>Eurotronic Spirit Radiator Thermostat</description>
+			<typeNumber>7</typeNumber>
+		</device>
+	</supportedDevices>
+	<properties>
+		<hasBattery>true</hasBattery>
+	</properties>
+	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
+			<properties>
+				<internal>true</internal>
+			</properties>
+			<configParameters>ZigbeeConfig</configParameters>
+			<variables>maint_ch_values</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="Measurements">
+			<variables>ZigbeeVariables</variables>
+		</function>
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="2" type="Configuration">
+			<variables>ZigbeeConfigVariables</variables>
+		</function>
+	</functions>
+	<packets>
+
+		<packet id="TRV_MODE_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = enum8 -->
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x30</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>88</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>TRV_MODE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="TRV_MODE_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="TRV_MODE_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = enum8 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x30</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>TRV_MODE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="TRV_MODE_ATTR_SET">
+			<direction>fromCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x2</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = enum8 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x30</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>24</bitSize>
+					<parameterId>TRV_MODE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+		<packet id="ERRORS_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = uint8 -->
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x20</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>88</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>ERRORS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ERRORS_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="ERRORS_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = uint8 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x20</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>ERRORS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="VALVE_POS_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = uint8 -->
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x20</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>88</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>VALVE_POS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="VALVE_POS_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="VALVE_POS_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = uint8 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x20</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>VALVE_POS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="VALVE_POS_ATTR_SET">
+			<direction>fromCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x2</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = uint8 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x20</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>24</bitSize>
+					<parameterId>VALVE_POS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+		<packet id="HOST_FLAGS_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x08</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = uint24 -->
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x22</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>88</bitIndex>
+					<bitSize>24</bitSize>
+					<parameterId>HOST_FLAGS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="HOST_FLAGS_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x08</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="HOST_FLAGS_ATTR_SET">
+			<direction>fromCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x2</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x08</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = uint24 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x22</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>24</bitSize>
+					<parameterId>HOST_FLAGS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="HOST_FLAGS_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x08</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = uint24 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x22</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>24</bitSize>
+					<parameterId>HOST_FLAGS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+
+		<packet id="SETPOINT_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x03</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>SETPOINT</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+    <!-- can come packed along with some other attr which I don't know what it is yet -->
+		<packet id="SETPOINT_REPORT_INFO2">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x08</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = uint24 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x22</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>24</bitSize>
+					<parameterId>HOST_FLAGS</parameterId>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>104</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x03</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>112</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>120</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>128</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>SETPOINT</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="SETPOINT_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x1C</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x03</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>88</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>SETPOINT</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="SETPOINT_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x03</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="SETPOINT_ATTR_SET">
+			<direction>fromCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x14</constValueInteger>
+				</element>
+				<!-- Manufacturer code -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x37</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command -->
+				<element>
+					<bitIndex>48</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x2</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x03</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x40</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>SETPOINT</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="TEMPERATURE_REPORT_INFO">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>TEMPERATURE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+		<packet id="TEMPERATURE_REPORT_INFO2">
+			<direction>toCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x0008</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x20</constValueInteger>
+				</element>
+				<!-- pi heating demand value here, one byte -->
+				<!-- Attr id -->
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>80</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>88</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>TEMPERATURE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+		<packet id="TEMPERATURE_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>TEMPERATURE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="TEMPERATURE_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="TEMPERATURE_ATTR_SET">
+			<!-- it's actually a report, but it's sent to the device, instead of being received -->
+			<!-- RemoteSensing must be set, otherwise it will be ignored -->
+			<direction>fromCentral</direction>
+			<type>0x02010A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = int16 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x29</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>16</bitSize>
+					<parameterId>TEMPERATURE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+
+		<packet id="OCCUPANCY_ATTR_INFO">
+			<direction>toCentral</direction>
+			<type>0x020101</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Command = read attr response -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Success = success -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Data type = map8 -->
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>72</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>OCCUPANCY</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="OCCUPANCY_ATTR_GET">
+			<direction>fromCentral</direction>
+			<type>0x020100</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x01</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x10</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = read attr request -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x00</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+
+		<packet id="OCCUPANCY_ATTR_SET">
+			<!-- it's actually a report, but it's sent to the device, instead of being received -->
+			<!-- RemoteSensing must be set, otherwise it will be ignored -->
+			<direction>fromCentral</direction>
+			<type>0x04060A</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<!-- Cluster id -->
+				<element>
+					<bitIndex>0</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x06</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x04</constValueInteger>
+				</element>
+				<!-- Frame control -->
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<!-- Dummy, will be replaced by transaction id -->
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0</constValueInteger>
+				</element>
+				<!-- Command = report attributes -->
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x0A</constValueInteger>
+				</element>
+				<!-- Attr id -->
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0x02</constValueInteger>
+				</element>
+				<!-- Data type = map8 -->
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0x18</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>64</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>OCCUPANCY</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+
+
+  </packets>
+  <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+		<configParameters id="ZigbeeConfig">
+		</configParameters>
+		<variables id="maint_ch_values">
+			<parameter id="UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<service>true</service>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="STICKY_UNREACH">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<service>true</service>
+					<sticky>true</sticky>
+				</properties>
+				<logicalBoolean />
+				<physicalBoolean>
+					<operationType>internal</operationType>
+				</physicalBoolean>
+			</parameter>
+			<parameter id="RSSI_DEVICE">
+				<properties>
+					<writeable>false</writeable>
+				</properties>
+				<logicalInteger/>
+				<physicalInteger groupId="RSSI_DEVICE">
+					<operationType>internal</operationType>
+				</physicalInteger>
+			</parameter>			
+		</variables>
+		<variables id="ZigbeeVariables">
+
+			<parameter id="TEMPERATURE">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is signed -->
+					<signed>true</signed>
+					<unit>°C</unit>
+					<casts>
+						<round>
+							<decimalPlaces>2</decimalPlaces>
+						</round>
+						<decimalIntegerScale>
+							<factor>100</factor>
+							<offset>0</offset>
+						</decimalIntegerScale>
+					</casts>
+				</properties>
+				<logicalDecimal>
+					<minimumValue>-273.15</minimumValue>
+					<maximumValue>327.67</maximumValue>
+				</logicalDecimal>
+				<physicalInteger groupId="TEMPERATURE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="TEMPERATURE_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="TEMPERATURE_REPORT_INFO2">
+						<type>event</type>
+					</packet>
+					<packet id="TEMPERATURE_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="TEMPERATURE_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="TEMPERATURE_ATTR_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="SETPOINT">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is signed -->
+					<signed>true</signed>
+					<unit>°C</unit>
+					<casts>
+						<round>
+							<decimalPlaces>2</decimalPlaces>
+						</round>
+						<decimalIntegerScale>
+							<factor>100</factor>
+							<offset>0</offset>
+						</decimalIntegerScale>
+					</casts>
+				</properties>
+				<logicalDecimal>
+					<minimumValue>5.00</minimumValue>
+					<maximumValue>30.00</maximumValue>
+				</logicalDecimal>
+				<physicalInteger groupId="SETPOINT">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="SETPOINT_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="SETPOINT_REPORT_INFO2">
+						<type>event</type>
+					</packet>
+					<packet id="SETPOINT_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="SETPOINT_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="SETPOINT_ATTR_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="HOST_FLAGS">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>16777215</maximumValue>
+					<defaultValue>0</defaultValue>
+				</logicalInteger>
+				<physicalInteger groupId="HOST_FLAGS">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="HOST_FLAGS_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="SETPOINT_REPORT_INFO2">
+						<type>event</type>
+					</packet>
+					<packet id="HOST_FLAGS_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="HOST_FLAGS_ATTR_SET">
+						<type>set</type>
+					</packet>
+					<packet id="HOST_FLAGS_ATTR_GET">
+						<type>get</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="ERRORS">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>255</maximumValue>
+					<defaultValue>0</defaultValue>
+				</logicalInteger>
+				<physicalInteger groupId="ERRORS">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="ERRORS_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="ERRORS_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="ERRORS_ATTR_GET">
+						<type>get</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="VALVE_POS">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>255</maximumValue>
+					<defaultValue>0</defaultValue>
+				</logicalInteger>
+				<physicalInteger groupId="VALVE_POS">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="VALVE_POS_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="VALVE_POS_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="VALVE_POS_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="VALVE_POS_ATTR_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+
+			<parameter id="TRV_MODE">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>255</maximumValue>
+					<defaultValue>0</defaultValue>
+				</logicalInteger>
+				<physicalInteger groupId="TRV_MODE">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="TRV_MODE_REPORT_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="TRV_MODE_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="TRV_MODE_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="TRV_MODE_ATTR_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+
+
+			<parameter id="OCCUPANCY">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>255</maximumValue>
+					<defaultValue>0</defaultValue>
+				</logicalInteger>
+				<physicalInteger groupId="OCCUPANCY">
+				    <operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="OCCUPANCY_ATTR_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="OCCUPANCY_ATTR_GET">
+						<type>get</type>
+					</packet>
+					<packet id="OCCUPANCY_ATTR_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+
+    </variables>
+    <variables id="ZigbeeConfigVariables">
+    </variables>
+  </parameterGroups>
+</homegearDevice>
